@@ -1,5 +1,5 @@
+zookeeper-server-start.bat ../../config/zookeeper.properties
 kafka-server-start.bat ../../config/server.properties
-zookeeper-server-start.bat ./../config/zookeeper.properties
 
 These are the topic created in kafka you should do it first :
 

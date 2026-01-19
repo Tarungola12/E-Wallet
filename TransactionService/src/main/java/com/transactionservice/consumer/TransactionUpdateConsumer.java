@@ -23,6 +23,7 @@ public class TransactionUpdateConsumer {
         JSONObject jsonObject = new JSONObject(data);
         
         String senderId = jsonObject.optString(CommonConstants.SENDER_ID);
+        
         String receiverId = jsonObject.optString(CommonConstants.RECEIVER_ID);
         String txnId = jsonObject.optString(CommonConstants.TRANSACTION_ID);
         String txnStatus = jsonObject.optString(CommonConstants.TRANSACTION_STATUS);
