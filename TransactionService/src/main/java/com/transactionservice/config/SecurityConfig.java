@@ -29,22 +29,17 @@ public class SecurityConfig {
 //                .authorizeHttpRequests(request-> request.anyRequest().authenticated())
 //                .httpBasic(Customizer.withDefaults()).build();
 //    }
+
+	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 	    return http
 	        .csrf(csrf -> csrf.disable())
-
-	        // 🔥 THIS ENABLES CORS AT SECURITY LEVEL
 	        .cors(Customizer.withDefaults())
-
 	        .authorizeHttpRequests(auth -> auth
-	            // 🔥 VERY IMPORTANT: allow preflight
 	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
-	            // your actual API
 	            .requestMatchers("/transaction-service/create/txn").authenticated()
-
 	            .anyRequest().authenticated()
 	        )
 	        .httpBasic(Customizer.withDefaults())
@@ -52,13 +47,9 @@ public class SecurityConfig {
 	}
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-
 	    CorsConfiguration config = new CorsConfiguration();
-
 	    config.setAllowedOrigins(List.of("http://localhost:8081"));
 	    config.setAllowedMethods(List.of("GET", "POST", "OPTIONS"));
-
-	    // 🔥 THIS IS THE REAL FIX
 	    config.setAllowedHeaders(List.of(
 	            "Authorization",
 	            "Content-Type",
@@ -66,11 +57,9 @@ public class SecurityConfig {
 	    ));
 
 	    config.setAllowCredentials(false);
-
 	    UrlBasedCorsConfigurationSource source =
 	            new UrlBasedCorsConfigurationSource();
 	    source.registerCorsConfiguration("/**", config);
-
 	    return source;
 	}
 
