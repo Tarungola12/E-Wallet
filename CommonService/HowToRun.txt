@@ -1,0 +1,8 @@
+kafka-server-start.bat ../../config/server.properties
+zookeeper-server-start.bat ./../config/zookeeper.properties
+
+These are the topic created in kafka you should do it first :
+
+TXN_TOPIC
+TXN_UPDATE_TOPIC
+USER_CREATION_TOPIC
